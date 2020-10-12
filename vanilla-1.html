@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<title>HTML template</title>
+</head>
+<body>
+
+<form class="form p-4">
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username">
+	</div>
+
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password">
+	</div>
+
+	<div class="form-group">
+		<label for="show-password">
+			<input type="checkbox" name="show-passwords" id="show-password">
+			Show password
+		</label>
+	</div>
+
+	<p>
+		<button type="submit" class="btn btn-primary">Log In</button>
+	</p>
+</form> <!-- #container -->
+
+		
+<script>                    
+	var check = document.querySelector('#show-password');
+	var password = document.querySelector('#password');
+
+
+	check.addEventListener('click', function (event) {
+		if (check.checked === true) {
+			password.type = 'text';	
+		}
+		else {
+			password.type = 'password';
+		}
+		
+	});
+</script>
+
+</body>
+</html>
