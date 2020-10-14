@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Vanilla js project 2</title>
+</head>
+<body>
+	<!-- When a user clicks on the #show-passwords checkbox, it should show the text for the #current-password and #new-password fields if it’s checked, and mask it if it’s unchecked. -->
+	<form>
+	<div>
+		<label for="current-password">Current Password</label>
+		<input type="password" name="current-password" id="current-password">
+	</div>
+
+	<div>
+		<label for="new-password">New Password</label>
+		<input type="password" name="new-password" id="new-password">
+	</div>
+
+	<div>
+		<label for="show-passwords">
+			<input type="checkbox" name="show-passwords" id="show-passwords">
+			Show passwords
+		</label>
+	</div>
+
+	<p>
+		<button type="submit">Change Passwords</button>
+	</p>
+</form>
+<script>
+	// get my vars
+	var check = document.querySelector('#show-passwords');
+	var inputs = document.querySelectorAll('input[type ="password"]');
+	// make array from nodelist
+	let passwords = Array.from(inputs);
+
+	//define functions
+	var showText = function (input) {
+		input.type = 'text';
+		return;
+	}
+	var maskText = function (input) {
+		input.type = 'password';
+		return;
+	}
+
+	// add evenlistener and loop inputs when clicked
+	check.addEventListener('click', function(event){
+		if (event.target.checked === true) {
+			passwords.forEach(function(item, index){
+				showText(item);
+			});
+		}
+		else {
+			passwords.forEach(function(item, index){
+				maskText(item);
+			});
+		}	
+	});
+
+	console.log(passwords);
+	console.log(inputs);
+
+</script>
+</body>
+</html>
