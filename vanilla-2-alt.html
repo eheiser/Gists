@@ -1,0 +1,75 @@
+≤<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Vanilla js project 2 alt</title>
+</head>
+<body>
+	<!-- When a user clicks on the #show-passwords checkbox, it should show the text for the #current-password and #new-password fields if it’s checked, and mask it if it’s unchecked. -->
+	<form>
+	<div>
+		<label for="current-password">Current Password</label>
+		<input type="password" name="current-password" id="current-password">
+	</div>
+
+	<div>
+		<label for="new-password">New Password</label>
+		<input type="password" name="new-password" id="new-password">
+	</div>
+
+	<div>
+		<label for="show-passwords">
+			<input type="checkbox" name="show-passwords" id="show-passwords">
+			Show passwords
+		</label>
+	</div>
+
+	<p>
+		<button type="submit">Change Passwords</button>
+	</p>
+</form>
+<script>
+
+// Variables
+// Get the password toggle
+const toggle = document.querySelector('#show-passwords');
+
+// Get the password fields
+const passwords = Array.from(
+  document.querySelectorAll('[type="password"]')
+);
+
+//
+// Functions
+//
+
+/**
+ * Toggle the visibility of a password field
+ * based on a checkbox
+ * 
+ * @param {Object} checkbox The checkbox
+ * @param {Object} field    The password field
+ */
+function togglePassword (checkbox, field) {
+  field.type = checkbox.checked ? 'text' : 'password';
+}
+
+/**
+ * Handle change events
+ */
+function handleChange () {
+  passwords.forEach(password => {
+    togglePassword(this, password);
+  });
+}
+
+//
+// Inits & Event Listeners
+//
+
+// Handle change events
+toggle.addEventListener('change', handleChange);
+
+</script>
+</body>
+</html>
