@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container p-4">
+		<div class="row">
+			<div id="app"></div>
+		</div>
+	</div>	
+
+	<script>
+		// var wizards = ["Gandalf", "Harry", "Hermione", "Saruman"];
+		// var app = document.querySelector('#app');
+
+		// var html = wizards.map(function (wizard) {
+		// 	/* body... */
+		// 	return '<li>' + wizard + '</li>';
+		// }).join('');
+		// console.log(html);
+		// app.innerHTML = '<ul>' + html + '</ul>';
+
+		fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=Dl9PtOimIHf00uHBk7k19lE8PhCWTNi4').then(function(response){
+			console.log('succes!', response);
+			return response.json();
+		}).then(function(data){
+			// console.log(data.results[0]); 
+			var titles = data.results.map(function(result){
+				return '<li>' + '<a href="' + result.url + '">' + result.title + '</a>' + '</li>';
+			}).join('');
+			app.innerHTML = '<ul>' + titles + '</ul>';
+		}).catch(function(err){
+			console.warn('error occurred', err);
+		});
+	</script>
+</body>
+</html>
